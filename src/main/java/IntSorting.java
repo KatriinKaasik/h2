@@ -3,10 +3,7 @@ import java.util.*;
 /**
  * Comparison of sorting methods. The same array of non-negative int values is
  * used for all methods.
- *
- * @author Jaanus
- * @version 3.0
- * @since 1.6
+ * Lahenduse loomisel kasutasin tehisintellekti abi (Sonnet5.5).
  */
 public class IntSorting {
 
@@ -110,23 +107,10 @@ public class IntSorting {
    public static void binaryInsertionSort(int[] a) {
       for (int i = 1; i < a.length; i++) {
          int x = a[i];
-
-         int left = 0;
-         int right = i;
-
-         while (left < right) {
-            int mid = (left + right) / 2;
-
-            if (a[mid] < x)
-               left = mid + 1;
-            else
-               right = mid;
-         }
-
-         // Nihutan paremale
-         System.arraycopy(a, left, a, left + 1, i - left);
-
-         a[left] = x;
+         int pos = Arrays.binarySearch(a, 0, i, x);
+         if (pos < 0) pos = -pos - 1;
+         System.arraycopy(a, pos, a, pos + 1, i - pos);
+         a[pos] = x;
       }
    }
 
