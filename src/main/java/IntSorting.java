@@ -108,7 +108,26 @@ public class IntSorting {
     *           array to be sorted
     */
    public static void binaryInsertionSort(int[] a) {
-      // TODO!!! Your method here!
+      for (int i = 1; i < a.length; i++) {
+         int x = a[i];
+
+         int left = 0;
+         int right = i;
+
+         while (left < right) {
+            int mid = (left + right) / 2;
+
+            if (a[mid] < x)
+               left = mid + 1;
+            else
+               right = mid;
+         }
+
+         // Nihutan paremale
+         System.arraycopy(a, left, a, left + 1, i - left);
+
+         a[left] = x;
+      }
    }
 
    /**
@@ -210,4 +229,3 @@ public class IntSorting {
    }
 
 }
-
